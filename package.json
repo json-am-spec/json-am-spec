@@ -1,0 +1,9 @@
+{
+  "name": "json-am-spec",
+  "version": "0.1.2-draft",
+  "description": "JSON Addressable Memory specification",
+  "license": "CC-BY-4.0",
+  "scripts": {
+    "serve": "npx serve ."
+  }
+}
