@@ -1,51 +1,48 @@
 # JSON-AM Specification v0.1.2-draft
 
+## Abstract
+JSON-AM defines URI-addressable envelopes for agent memories, contexts, reasoning traces and Agent Task Interchange Records with signed provenance.
+
 ## 1. Introduction
-JSON Addressable Memory defines a URI-addressable envelope format for agent memories, contexts, reasoning traces and Agent Task Interchange Records.
+1.1 Scope
+1.2 Terminology
+1.3 Design Goals
 
 ## 2. Problem Statement
-Agents lack stable, portable, auditable memory. Current systems store blobs in vector DBs with no stable identity.
+Agents lack stable addressable memory.
 
-## 3. Design Principles
-Addressable, portable, signed, auditable, composable.
+## 3. URI Schemes
+5.1 memory://
+5.2 context://
+5.3 trace://
+5.4 agent://
+5.5 trust://
 
-## 4. Terminology
-CARMA, ATIR, Envelope, Trust Domain.
+## 4. Envelope Format
+6.1 Base Envelope
+6.2 Memory
+6.3 Context
+6.4 Trace
+6.5 ATIR
 
-## 5. URI Schemes
-memory://, context://, trace://, agent://, trust://
-RFC 3986 compliant.
+## 5. Capability Tokens
+7.1 JWT claims
+7.2 jsonam claims
 
-## 6. Envelope Format
-Base envelope: @context, id, type, uriScheme, trustDomain, version, issuedAt, provenance, signature.
-MemoryRecord, ContextEnvelope, ReasoningTrace, ATIR.
+## 6. Trust Domains
+9.1 Isolation
+9.2 Federation
 
-## 7. Capability Tokens
-JWT RFC7519 with jsonam claims: domains, actions, resources.
-Signed with EdDSA.
+## 7. Transport
+10.1 HTTP
+10.2 MCP
 
-## 8. Link Engine
-Edge types registry. Graph traversal.
+## 8. Security
+12.1 JWS
+12.2 JWT
+12.3 Guardrails
 
-## 9. Trust Domains and Federation
-Trust domains isolated. Federation via ANS/DNS-AID.
-
-## 10. Transport
-HTTP REST /resolve, /memory, /capability
-MCP resources and tools
-Direct file for dev.
-
-## 11. Adapters
-Postgres, Markdown, Graphiti, File.
-
-## 12. Security
-JWS signing, JWT verification, capability enforcement.
-
-## 13. Provenance
-W3C PROV aligned.
-
-## 14. Examples
-Create, grant, resolve, lifecycle.
-
-## 15. References
-MCP, A2A, JSON Schema, RFC7519, RFC7515.
+## 9. Examples
+14.1 Create
+14.2 Grant
+14.3 Resolve
