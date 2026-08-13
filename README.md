@@ -1,17 +1,18 @@
 # JSON-AM Spec
 
-JSON-AM = JSON Addressable Memory
+JSON Addressable Memory specification.
 
-The spec for Context Addressable Reasoning and Memory Architecture.
+URI-addressable envelopes for memories, contexts, reasoning traces and ATIR with JWT capabilities, JWS signing and trust domain federation.
 
-JSON-AM defines URI-addressable envelopes for memories, contexts, reasoning traces and Agent Task Interchange Records ATIR with signed provenance.
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+[![Code License: Apache 2.0](https://img.shields.io/badge/Code-Apache%202.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
-## Status
-v0.1.2-draft
+**Status:** v0.1.2-draft
+
+**Sites**
+- Spec: https://json-am.org
+- Implementation: https://carma.json-am.org
 
 ## License
-CC BY 4.0 for spec. Code Apache 2.0.
-
-## Sites
-spec: json-am.org
-implementation: carma.json-am.org
+Spec text: CC BY 4.0
+Code examples: Apache 2.0
