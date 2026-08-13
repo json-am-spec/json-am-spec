@@ -1,56 +1,180 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "JSON-AM Envelope",
+  "title": "JSON-AM Envelopes",
   "type": "object",
-  "required": [
-    "@context",
-    "id",
-    "type",
-    "uriScheme",
-    "trustDomain",
-    "version",
-    "issuedAt",
-    "provenance"
+  "oneOf": [
+    {
+      "$ref": "#/$defs/MemoryRecord"
+    },
+    {
+      "$ref": "#/$defs/ContextEnvelope"
+    },
+    {
+      "$ref": "#/$defs/ReasoningTrace"
+    },
+    {
+      "$ref": "#/$defs/ATIR"
+    }
   ],
-  "properties": {
-    "@context": {
-      "const": "https://json-am.org/context/v0.1"
+  "$defs": {
+    "BaseEnvelope": {
+      "type": "object",
+      "required": [
+        "@context",
+        "id",
+        "type",
+        "uriScheme",
+        "trustDomain",
+        "version",
+        "issuedAt",
+        "provenance"
+      ],
+      "properties": {
+        "@context": {
+          "const": "https://json-am.org/context/v0.1"
+        },
+        "id": {
+          "type": "string",
+          "format": "uri"
+        },
+        "type": {
+          "type": "string"
+        },
+        "uriScheme": {
+          "enum": [
+            "memory",
+            "context",
+            "trace",
+            "agent",
+            "trust"
+          ]
+        },
+        "trustDomain": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "issuedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "provenance": {
+          "type": "object",
+          "required": [
+            "createdBy",
+            "createdAt"
+          ],
+          "properties": {
+            "createdBy": {
+              "type": "string"
+            },
+            "createdAt": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        },
+        "signature": {
+          "type": "object"
+        }
+      }
     },
-    "id": {
-      "type": "string"
-    },
-    "type": {
-      "enum": [
-        "Memory",
-        "Context",
-        "ReasoningTrace",
-        "ATIR"
+    "MemoryRecord": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/BaseEnvelope"
+        }
+      ],
+      "properties": {
+        "type": {
+          "const": "Memory"
+        },
+        "memoryKind": {
+          "enum": [
+            "episodic",
+            "semantic",
+            "skill"
+          ]
+        },
+        "content": {
+          "type": "object"
+        },
+        "links": {
+          "type": "array"
+        }
+      },
+      "required": [
+        "memoryKind",
+        "content"
       ]
     },
-    "uriScheme": {
-      "enum": [
-        "memory",
-        "context",
-        "trace",
-        "agent",
-        "trust"
-      ]
+    "ContextEnvelope": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/BaseEnvelope"
+        }
+      ],
+      "properties": {
+        "type": {
+          "const": "Context"
+        },
+        "contextKind": {
+          "enum": [
+            "session",
+            "project",
+            "trust"
+          ]
+        },
+        "scope": {
+          "type": "string"
+        },
+        "includes": {
+          "type": "array"
+        }
+      }
     },
-    "trustDomain": {
-      "type": "string"
+    "ReasoningTrace": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/BaseEnvelope"
+        }
+      ],
+      "properties": {
+        "type": {
+          "const": "ReasoningTrace"
+        },
+        "runId": {
+          "type": "string"
+        },
+        "steps": {
+          "type": "array"
+        }
+      }
     },
-    "version": {
-      "type": "string"
-    },
-    "issuedAt": {
-      "type": "string",
-      "format": "date-time"
-    },
-    "provenance": {
-      "type": "object"
-    },
-    "signature": {
-      "type": "object"
+    "ATIR": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/BaseEnvelope"
+        }
+      ],
+      "properties": {
+        "type": {
+          "const": "ATIR"
+        },
+        "task": {
+          "type": "string"
+        },
+        "boundContext": {
+          "type": "array"
+        },
+        "memoryLinks": {
+          "type": "array"
+        },
+        "replayable": {
+          "type": "boolean"
+        }
+      }
     }
   }
 }
