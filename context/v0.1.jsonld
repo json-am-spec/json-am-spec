@@ -1,6 +1,7 @@
 {
   "@context": {
     "id": "@id",
-    "type": "@type"
+    "type": "@type",
+    "jsonam": "https://json-am.org/context/v0.1#"
   }
 }
