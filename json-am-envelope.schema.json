@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "JSON-AM Envelope",
+  "type": "object",
+  "required": [
+    "@context",
+    "id",
+    "type",
+    "uriScheme",
+    "trustDomain",
+    "version",
+    "issuedAt",
+    "provenance"
+  ],
+  "properties": {
+    "@context": {
+      "const": "https://json-am.org/context/v0.1"
+    },
+    "id": {
+      "type": "string"
+    },
+    "type": {
+      "enum": [
+        "Memory",
+        "Context",
+        "ReasoningTrace",
+        "ATIR"
+      ]
+    },
+    "uriScheme": {
+      "enum": [
+        "memory",
+        "context",
+        "trace",
+        "agent",
+        "trust"
+      ]
+    },
+    "trustDomain": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "issuedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "provenance": {
+      "type": "object"
+    },
+    "signature": {
+      "type": "object"
+    }
+  }
+}
