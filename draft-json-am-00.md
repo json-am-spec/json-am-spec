@@ -74,3 +74,29 @@ Create memory, grant capability, resolve URI, lifecycle
 
 ## 15. References
 MCP, A2A, JSON Schema, RFC7519, RFC7515, W3C PROV
+
+## Appendix A: Example Envelopes
+Example Memory:
+{
+  "@context": "https://json-am.org/context/v0.1",
+  "id": "memory://acme/ep/001",
+  "type": "Memory",
+  "uriScheme": "memory",
+  "trustDomain": "acme",
+  "version": "1",
+  "issuedAt": "2026-08-09T00:00:00Z",
+  "provenance": {"createdBy": "agent://acme", "createdAt": "2026-08-09T00:00:00Z"},
+  "memoryKind": "episodic",
+  "content": {"title": "Example", "body": "..."},
+  "links": []
+}
+
+Example ATIR:
+{
+  "id": "agent://acme/atir/001",
+  "type": "ATIR",
+  "task": "Assess risk",
+  "boundContext": ["context://acme/proj/1"],
+  "memoryLinks": ["memory://acme/ep/001"],
+  "replayable": true
+}
